@@ -2,7 +2,7 @@
 
 \mode<presentation>
 {
-  \usetheme{Warsaw}
+  \usetheme{Berkeley}%Warsaw}
   \setbeamercovered{transparent}
 }
 
@@ -26,7 +26,7 @@
 \institute[Universidade Estadual de Campinas] {
   \text{Orientador: Zanoni Dias} \\
   \textbf{Instituto de Computação - UNICAMP}\\
-  \parbox{1in}{\center{\ABACO{2}{0}{0}{9}{0.5}}}
+  \parbox{1in}{\center{\ABACO{2}{0}{0}{9}{0.7}}}
 }
 
 \date{}
@@ -37,6 +37,8 @@
 
 \frame{\tableofcontents}
 
+\footnotesize
+
 \section{Introdução}
 
 \frame{ 
@@ -45,17 +47,17 @@
   motivações do problema. (2-6 slides) 
 }
 
-\section{Ordenação por Transposições}
-
-\frame{
-  \frametitle{Ordenação por Transposições}
-  Explicação relacionando trabalhos já feitos. (2-4 slides)
-}
-
 \section{Ordenação por Reversões}
 
 \frame{
   \frametitle{Ordenação por Reversões}
+  Explicação relacionando trabalhos já feitos. (2-4 slides)
+}
+
+\section{Ordenação por Transposições}
+
+\frame{
+  \frametitle{Ordenação por Transposições}
   Explicação relacionando trabalhos já feitos. (2-4 slides)
 }
 
@@ -70,8 +72,60 @@
 
 \frame{
   \frametitle{Modelo}
-  Apresentação do modelo com explicação das restrições (2-6 slides)
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    Primeiramente vamos apresentar as variáveis e restrições que são
+    comuns para todos modelos. A idéia é assegurar que só estamos
+    tratando com permutações válidas.
+  \end{beamerboxesrounded}
+  \vspace{1cm}
+  \begin{beamerboxesrounded}[center,shadow=true]{Variáveis $B_{ijk}$}
+    Indicam se a $i$-ésima posição de $\pi$
+    possui o valor $j$ depois da $k$-ésima operação ter sido executada,
+    para todo $1 \le i, j \le n$ e todo $ 0 \le k < n$.
+    \[
+    B_{ijk} = \left \{ 
+      \begin{tabular}{ll} 
+        1, & se $\pi[i]$ = $j$ depois da $k$-ésima operação \\
+        0, & caso contrário
+      \end{tabular} \right .
+    \]
+  \end{beamerboxesrounded}
 }
+
+\frame{
+  \frametitle{Modelo - Restrições Comuns}
+  \begin{beamerboxesrounded}[center,shadow=true]{Restrições 
+      \ref{eq:corr1} e \ref{eq:corr2}}
+    Estas restrições garantem que a permutação inicial e a final são 
+    corretas.
+    \begin{equation}
+      \label{eq:corr1}
+      B_{i,\pi[i],0} = 1, \text{para todo $1 \le i \le n$}.
+    \end{equation}
+    \begin{equation}
+      \label{eq:corr2}
+      B_{i,\sigma[i],n-1} = 1, \text{para todo $1 \le i \le n$}.
+    \end{equation}
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{Restrições 
+      \ref{eq:posval} e \ref{eq:valpos}}
+    A restrição \ref{eq:posval} garante que cada posição de uma
+    permutação possui exatamente um valor associado a ela. Já a
+    restrição \ref{eq:valpos} garante que todo valor esteja associado
+    a uma posição de cada permutação.
+    \begin{equation}
+      \label{eq:posval}
+      \sum_{j=1}^{n} B_{ijk} = 1, \text{para todo $1 \le i \le n$, 
+        $0 \le k < n$}.
+    \end{equation}
+    \begin{equation}
+      \label{eq:valpos}
+      \sum_{i=1}^{n} B_{ijk} = 1, \text{para todo $1 \le i \le n$, 
+        $0 \le k < n$}.
+    \end{equation}
+  \end{beamerboxesrounded}
+}
+
 
 \subsection{Metodologias}
 \frame{
