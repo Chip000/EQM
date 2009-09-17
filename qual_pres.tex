@@ -2,7 +2,8 @@
 
 \mode<presentation>
 {
-  \usetheme{Berkeley}%Warsaw}
+%  \usetheme{Berkeley}
+  \usetheme{Warsaw}
   \setbeamercovered{transparent}
 }
 
@@ -92,12 +93,45 @@
   \end{beamerboxesrounded}
 }
 
+%\frame{
+%  \frametitle{Modelo - Restrições Comuns}
+%  \begin{beamerboxesrounded}[center,shadow=true]{Restrições 
+%      \ref{eq:corr1} e \ref{eq:corr2}}
+%    Estas restrições garantem que a permutação inicial e a final são 
+%    corretas.
+%    \begin{equation}
+%      \label{eq:corr1}
+%      B_{i,\pi[i],0} = 1, \text{para todo $1 \le i \le n$}.
+%    \end{equation}
+%    \begin{equation}
+%      \label{eq:corr2}
+%      B_{i,\sigma[i],n-1} = 1, \text{para todo $1 \le i \le n$}.
+%    \end{equation}
+%  \end{beamerboxesrounded}
+%  \begin{beamerboxesrounded}[center,shadow=true]{Restrições 
+%      \ref{eq:posval} e \ref{eq:valpos}}
+%    A restrição \ref{eq:posval} garante que cada posição de uma
+%    permutação possui exatamente um valor associado a ela. Já a
+%    restrição \ref{eq:valpos} garante que todo valor esteja associado
+%    a uma posição de cada permutação.
+%    \begin{equation}
+%      \label{eq:posval}
+%      \sum_{j=1}^{n} B_{ijk} = 1, \text{para todo $1 \le i \le n$, 
+%        $0 \le k < n$}.
+%    \end{equation}
+%    \begin{equation}
+%      \label{eq:valpos}
+%      \sum_{i=1}^{n} B_{ijk} = 1, \text{para todo $1 \le i \le n$, 
+%        $0 \le k < n$}.
+%    \end{equation}
+%  \end{beamerboxesrounded}
+%}
+
 \frame{
   \frametitle{Modelo - Restrições Comuns}
-  \begin{beamerboxesrounded}[center,shadow=true]{Restrições 
-      \ref{eq:corr1} e \ref{eq:corr2}}
-    Estas restrições garantem que a permutação inicial e a final são 
-    corretas.
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    As restrições \ref{eq:corr1} e \ref{eq:corr2} garantem que a
+    permutação inicial e a final são corretas.
     \begin{equation}
       \label{eq:corr1}
       B_{i,\pi[i],0} = 1, \text{para todo $1 \le i \le n$}.
@@ -106,9 +140,6 @@
       \label{eq:corr2}
       B_{i,\sigma[i],n-1} = 1, \text{para todo $1 \le i \le n$}.
     \end{equation}
-  \end{beamerboxesrounded}
-  \begin{beamerboxesrounded}[center,shadow=true]{Restrições 
-      \ref{eq:posval} e \ref{eq:valpos}}
     A restrição \ref{eq:posval} garante que cada posição de uma
     permutação possui exatamente um valor associado a ela. Já a
     restrição \ref{eq:valpos} garante que todo valor esteja associado
