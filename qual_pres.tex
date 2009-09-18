@@ -21,7 +21,10 @@
 
 \include{include/abaco}
 
-\title[PLI e PR para Problemas de Rearranjo de Genomas]{Programação Linear Inteira e Programação Lógica por Restrições para Problemas de Rearranjo de Genomas}
+\title[PLI e PR para Problemas de Rearranjo de Genomas]{Programação
+  Linear Inteira e Programação Lógica por Restrições para Problemas de
+  Rearranjo de Genomas} 
+
 \author{Victor de Abreu Iizuka}
 
 \institute[Universidade Estadual de Campinas] {
@@ -38,7 +41,7 @@
 
 \frame{\tableofcontents}
 
-\footnotesize
+\scriptsize
 
 \section{Introdução}
 
@@ -71,6 +74,8 @@
 
 \subsection{Modelo}
 
+%%% Variaveis e restricoes comuns
+
 \frame{
   \frametitle{Modelo}
   \begin{beamerboxesrounded}[center,shadow=true]{}
@@ -92,40 +97,6 @@
     \]
   \end{beamerboxesrounded}
 }
-
-%\frame{
-%  \frametitle{Modelo - Restrições Comuns}
-%  \begin{beamerboxesrounded}[center,shadow=true]{Restrições 
-%      \ref{eq:corr1} e \ref{eq:corr2}}
-%    Estas restrições garantem que a permutação inicial e a final são 
-%    corretas.
-%    \begin{equation}
-%      \label{eq:corr1}
-%      B_{i,\pi[i],0} = 1, \text{para todo $1 \le i \le n$}.
-%    \end{equation}
-%    \begin{equation}
-%      \label{eq:corr2}
-%      B_{i,\sigma[i],n-1} = 1, \text{para todo $1 \le i \le n$}.
-%    \end{equation}
-%  \end{beamerboxesrounded}
-%  \begin{beamerboxesrounded}[center,shadow=true]{Restrições 
-%      \ref{eq:posval} e \ref{eq:valpos}}
-%    A restrição \ref{eq:posval} garante que cada posição de uma
-%    permutação possui exatamente um valor associado a ela. Já a
-%    restrição \ref{eq:valpos} garante que todo valor esteja associado
-%    a uma posição de cada permutação.
-%    \begin{equation}
-%      \label{eq:posval}
-%      \sum_{j=1}^{n} B_{ijk} = 1, \text{para todo $1 \le i \le n$, 
-%        $0 \le k < n$}.
-%    \end{equation}
-%    \begin{equation}
-%      \label{eq:valpos}
-%      \sum_{i=1}^{n} B_{ijk} = 1, \text{para todo $1 \le i \le n$, 
-%        $0 \le k < n$}.
-%    \end{equation}
-%  \end{beamerboxesrounded}
-%}
 
 \frame{
   \frametitle{Modelo - Restrições Comuns}
@@ -154,6 +125,110 @@
       \sum_{i=1}^{n} B_{ijk} = 1, \text{para todo $1 \le i \le n$, 
         $0 \le k < n$}.
     \end{equation}
+  \end{beamerboxesrounded}
+}
+
+%%% Transposicoes
+
+\frame{
+  \frametitle{Modelo - Transposição}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    Agora vamos apresentar as variáveis e restrições que são
+    referentes à operação de transposição.
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{Variáveis Binárias
+      $t_{abck}$}
+    Indicam quando a $k$-ésima operação de transposição realiza a
+    troca de lugares dos blocos $\pi[a \cdots b - 1]$ e $\pi[b \cdots
+    c - 1]$ de $\pi$, para todo $1 \le a < b < c \le n + 1$ e todo $ 1
+    \le k < n$.
+    \[
+    t_{abck} = \left \{ 
+      \begin{tabular}{ll} 
+        1, & se $\rho_{k} = \rho(a,b,c)$ \\
+        0, & caso contrário
+      \end{tabular} \right .
+    \]
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{Variáveis Binárias
+      $t_{k}$}
+    É usada para decidir se a $k$-ésima operação de transposição
+    modificou a permutação, para todo $ 1 \le k < n$.
+    \[
+    t_{k} = \left \{ 
+      \begin{tabular}{ll} 
+        1, & se $\rho_{k} = \rho(a,b,c)$ e $\rho_{k} \rho_{k-1} \cdots 
+        \rho_{1} \pi \neq \rho_{k-1} \cdots \rho_{1} \pi$\\
+        0, & caso contrário
+      \end{tabular} \right .
+    \]
+  \end{beamerboxesrounded}
+}
+
+\frame{
+  \frametitle{Modelo - Transposição - Restrições}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    As restrições \ref{eq:transp1} e \ref{eq:transp2} são necessárias
+    para identificar as transposições que fazem parte da solução.
+    \begin{align}
+      &t_{k} \le t_{k-1}, \text{para todo $1 \le k <
+        n$}. \label{eq:transp1} \\
+      \sum_{a=1}^{n-1}\sum_{b=a+1}^{n}\sum_{c=b+1}^{n+1} &t_{abck} \le
+      t_{k} , \text{para todo $1 \le k < n$}. \label{eq:transp2}
+    \end{align}
+  \end{beamerboxesrounded}
+  \vspace{1cm}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    As próximas restrições refletem a modificações na permutação
+    causada pela transposição a cada passo da execução. A análise será
+    dividida em três casos onde, para cada caso, analisamos cada
+    posição $i$ da permutação para verificar seu valor após a operação
+    de transposição $\rho(a,b,c)$ ser completa.
+  \end{beamerboxesrounded}
+}
+
+\frame{
+  \frametitle{Modelo - Transposição - Restrições}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    1. $i < a$ ou $i \ge c$:
+    \begin{align}
+      \sum_{a=i+1}^{n-1}\sum_{b=a+1}^{n}\sum_{c=b+1}^{n+1} t_{abck} +
+      \sum_{a=1}^{n-1}\sum_{b=a+1}^{n}\sum_{c=b+1}^{i} t_{abck} +
+      (1 - t_{k}) + B_{i,j,k-1} - B_{ijk} \le 1, \nonumber \\
+      \text{para todo $1 \le i, j \le n$ e todo $1 \le k < n$}.
+      \label{eq:transp3}
+    \end{align}
+    2. $a \le i < a + c -b$:
+    \begin{align}
+      t_{abck} + B_{b-a+i,j,k-1} - B_{ijk} \le 1, \nonumber \\
+      \text{$1 \le a < b < c \le n + 1, a \le i < a + c -b, 1 \le j
+        \le n, 1 \le k < n$}.
+      \label{eq:transp4}
+    \end{align}
+    3. $a + c - b \le i < c$:
+    \begin{align}
+      t_{abck} + B_{b-c+i,j,k-1} - B_{ijk} \le 1, \nonumber \\
+      \text{$1 \le a < b < c \le n + 1, a + c - b \le i < c, 1 \le j
+        \le n, 1 \le k < n$}.
+      \label{eq:transp5}
+    \end{align}
+  \end{beamerboxesrounded}
+}
+
+\frame{
+  \frametitle{Modelo - Transposição - Restrições}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    Usando o limitante superior e o inferior definido por Bafna e
+    Pevzner,1998, obtemos as seguintes restrições. \\
+    \begin{align}
+      t_{k} * n + k - 1 &\ge LB(\pi,\sigma), \text{para todo $1 \le k
+        \le n$}. \label{eq:transp6} \\
+      t_{k} * k &\le UB(\pi,\sigma), \text{para todo $1 \le k \le
+        n$}. \label{eq:transp7} \\ \nonumber
+    \end{align}
+    Onde LB e UB são, respectivamente, limitante inferior
+    e limitante superior para ciclos ímpares (facilmente
+    calculados a partir de $\pi$ e $\sigma$).
   \end{beamerboxesrounded}
 }
 
