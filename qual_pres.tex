@@ -41,8 +41,6 @@
 
 \frame{\tableofcontents}
 
-\scriptsize
-
 \section{Introdução}
 
 \frame{ 
@@ -69,8 +67,19 @@
 
 \frame{
   \frametitle{Programação Linear Inteira}
-  Explicação geral do trabalho já feito
+  \begin{itemize}
+  \item{Apresentado por Dias e de Souza,2007.}
+  \item{Modelo para o problema da distância com tamanho polinomial.}
+  \item{Modelo específico para os eventos de reversão, transposição ou
+      reversão e transposição simultaneamente.}
+  \item{Possui um tempo de execução muito grande. O programa retornava
+      \textit{timeout} para instâncias de tamanho
+      10 (tempo limite de 10 horas).}
+  \item{Inviável na prática.}
+  \end{itemize}
 }
+
+\scriptsize
 
 \subsection{Modelo}
 
@@ -377,6 +386,7 @@
   \end{beamerboxesrounded}
 }
 
+\normalsize
 
 \subsection{Metodologias}
 \frame{
@@ -388,20 +398,71 @@
 
 \frame{
   \frametitle{Programação Lógica por Restrições}
-  Explicação geral do trabalho já feito
+  \begin{itemize}
+  \item{Apresentado por Dias e Dias,2009.}
+  \item{Modelo específico para o eventos de transposição.}
+  \item{Duas formulações. Uma baseada na teoria do Problema de
+      Satisfação de Restrições (CSP) e a outra baseada na teoria do
+      Problema de Otimização com Restrições (COP).}
+  \item{Modelo simples. Não está utilizando algumas propriedades do
+      problema que podem melhorar a formulação.}
+  \end{itemize}
 }
 
-\subsection{Modelo}
+\scriptsize
 
+\subsection{Formulações}
+
+%%% formulacao csp
 \frame{
-  \frametitle{Modelo}
-  Apresentação do modelo básico com explicação das restrições (2-4 slides)
+  \frametitle{Formulação CSP}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    Primeiramente vamos apresentar a formulação baseada na teoria CSP.
+    Uma permutação $\pi$ é uma lista de elementos
+    ($\pi_{1},\pi_{2},\ldots,\pi_{n}$) onde $\pi_{i} \in \mathbb{N}$,
+    $0 < \pi \le n$ e $\pi_{i} \neq \pi_{j}$ para $i \neq j$.  Uma
+    transposição $\rho(i,j,k)$, $0 < i < j < k \le n$, tem o efeito de
+    separar a lista em quatro sub-listas $C_{1}C_{2}C_{3}C_{4}$ onde
+    $C_{1} = (\pi_{1},\ldots,\pi_{i-1}), C_{2} =
+    (\pi_{i},\ldots,\pi_{j-1}), C_{3} = (\pi_{j},\ldots,\pi_{k-1}) e
+    C_{4} = (\pi_{k},\ldots,\pi_{n})$, e juntando elas da forma
+    $\pi\rho = C_{1}C_{3}C_{2}C_{4}$.
+  \end{beamerboxesrounded}
+  \begin{columns}[c]
+    \begin{column}{5cm}
+      \begin{beamerboxesrounded}[center,shadow=true]{permutation($\pi, N$)}
+        %% \begin{algorithm}[H]
+        \begin{align}
+          per&mutation(\pi, N) :- \nonumber\\
+          &length(\pi, N), \nonumber\\
+          &\pi :: [1 .. N], \nonumber\\
+          &all\_different(\pi). \nonumber
+        \end{align}
+        %% \end{algorithm}
+      \end{beamerboxesrounded}
+    \end{column}
+    \begin{column}{5cm}
+      \begin{beamerboxesrounded}[center,shadow=true]{transposition($\pi,
+          \sigma, I, J, K$)}
+        %% \begin{algorithm}[H]
+        \begin{align}
+          tra&nsposition(\pi, \sigma, I, J, K) :- \nonumber\\
+          &permutation(\pi, N), \nonumber\\
+          &permutation(\sigma, N), \nonumber\\
+          &1 \le I < J < K \le N, \nonumber\\
+          &split(\pi, I, J, K, C_{1}, C_{2}, C_{3}, C_{4}), \nonumber\\
+          &\sigma = C_{1}, C_{3}, C_{2}, C_{4}. \nonumber
+        \end{align}
+        %% \end{algorithm}
+      \end{beamerboxesrounded}
+    \end{column}
+  \end{columns}
 }
 
 \subsection{Metodologias}
 \frame{
   \frametitle{Metodologias}
-  Explicação dos métodos que irão ser usados.(1-4 slides)
+  Explicação dos métodos que irão ser usados. (1-4 slides)
 }
 
 \section{Objetivos}
