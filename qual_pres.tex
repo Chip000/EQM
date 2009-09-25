@@ -157,7 +157,7 @@
     \[
     t_{k} = \left \{ 
       \begin{tabular}{ll} 
-        1, & se $\rho_{k} = \rho(a,b,c)$ e $\rho_{k} \rho_{k-1} \cdots 
+        1, & se $\rho_{k} = \rho(x,y,z)$ e $\rho_{k} \rho_{k-1} \cdots 
         \rho_{1} \pi \neq \rho_{k-1} \cdots \rho_{1} \pi$\\
         0, & caso contrário
       \end{tabular} \right .
@@ -183,7 +183,7 @@
     causada pela transposição a cada passo da execução. A análise será
     dividida em três casos onde, para cada caso, analisamos cada
     posição $i$ da permutação para verificar seu valor após a operação
-    de transposição $\rho(a,b,c)$ ser completa.
+    de transposição $\rho(a,b,c)$ ser completada.
   \end{beamerboxesrounded}
 }
 
@@ -229,6 +229,151 @@
     Onde LB e UB são, respectivamente, limitante inferior
     e limitante superior para ciclos ímpares (facilmente
     calculados a partir de $\pi$ e $\sigma$).
+  \end{beamerboxesrounded}
+}
+
+%%% Reversoes
+
+\frame{
+  \frametitle{Modelo - Reversão}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    Agora vamos apresentar as variáveis e restrições que são
+    referentes à operação de reversão.
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{Variáveis Binárias
+      $r_{abk}$}
+    Indicam quando a $k$-ésima operação de reversão afeta o blocos
+    $\pi[a \cdots b]$ de $\pi$, para todo $1 \le a < b \le n$ e todo $
+    1 \le k < n$.
+    \[
+    r_{abk} = \left \{ 
+      \begin{tabular}{ll} 
+        1, & se $\rho_{k} = \rho(a,b)$ \\
+        0, & caso contrário
+      \end{tabular} \right .
+    \]
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{Variáveis Binárias
+      $r_{k}$}
+    É usada para decidir se a $k$-ésima operação de reversão modificou
+    a permutação, para todo $ 1 \le k < n$.
+    \[
+    r_{k} = \left \{ 
+      \begin{tabular}{ll} 
+        1, & se $\rho_{k} = \rho(x,y)$ e $\rho_{k} \rho_{k-1} \cdots 
+        \rho_{1} \pi \neq \rho_{k-1} \cdots \rho_{1} \pi$\\
+        0, & caso contrário
+      \end{tabular} \right .
+    \]
+  \end{beamerboxesrounded}
+}
+
+\frame{
+  \frametitle{Modelo - Reversão - Restrições}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    As restrições \ref{eq:rev1} e \ref{eq:rev2} são necessárias
+    para identificar as reversões que fazem parte da solução.
+    \begin{align}
+      &r_{k} \le r_{k-1}, \text{para todo $1 \le k <
+        n$}. \label{eq:rev1} \\
+      \sum_{a=1}^{n-1}\sum_{b=a+1}^{n} &r_{abk} \le r_{k} , \text{para
+        todo $1 \le k < n$}. \label{eq:rev2}
+    \end{align}
+  \end{beamerboxesrounded}
+  \vspace{1cm}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    As próximas restrições lidam com as modificações na permutação
+    causada pela reversão a cada passo da execução. A análise será
+    dividida em dois casos onde, para cada caso, analisamos cada
+    posição $i$ da permutação para verificar seu valor após a operação
+    de reversão $\rho(a,b)$ ser completada.
+  \end{beamerboxesrounded}
+}
+
+\frame{
+  \frametitle{Modelo - Reversão - Restrições}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    1. $i < a$ ou $i > b$:
+    \begin{align}
+      \sum_{a=i+1}^{n-1}\sum_{b=a+1}^{n} r_{abk} +
+      \sum_{a=1}^{n-1}\sum_{b=a+1}^{i-1} r_{abk} +
+      (1 - r_{k}) + B_{i,j,k-1} - B_{ijk} \le 1, \nonumber \\
+      \text{para todo $1 \le i, j \le n$ e todo $1 \le k < n$}.
+      \label{eq:rev3}
+    \end{align}
+    2. $a \le i \le b$:
+    \begin{align}
+      r_{abk} + B_{b+a-i,j,k-1} - B_{ijk} \le 1, \nonumber \\
+      \text{$1 \le a < b \le n, a \le i \le b, 1 \le j
+        \le n, 1 \le k < n$}.
+      \label{eq:rev4}
+    \end{align}
+  \end{beamerboxesrounded}
+}
+
+%%% Reversoes e Transposicoes
+
+\frame{
+  \frametitle{Modelo - Reversão e Transposição}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    Para formular o problema da distância de reversão e transposição
+    vamos utilizar todas as variáveis definidas anteriormente,
+    adicionando um novo conjunto de variáveis ao problema.
+  \end{beamerboxesrounded}
+  \vspace{1cm}
+  \begin{beamerboxesrounded}[center,shadow=true]{Variáveis Binárias
+      $z_{k}$}
+    É usada para decidir se a $k$-ésima operação de reversão ou
+    transposição modificou a permutação $\pi$. Portanto para todo $1
+    \le k < n$:
+    \[
+    z_{k} = \left \{ 
+      \begin{tabular}{ll} 
+        1, & se $\rho_{k} = \rho(x,y)$ ou $\rho_{k} = \rho(x,y,z)$ e 
+        $\rho_{k} \rho_{k-1} \cdots 
+        \rho_{1} \pi \neq \rho_{k-1} \cdots \rho_{1} \pi$\\
+        0, & caso contrário
+      \end{tabular} \right .
+    \]
+  \end{beamerboxesrounded}
+}
+
+\frame{
+  \frametitle{Modelo - Reversão e Transposição - Restrições}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    Usaremos todas as restrições definidas anteriormente, com excessão
+    das restrições \ref{eq:transp1}, \ref{eq:rev1}, \ref{eq:transp6} e
+    \ref{eq:transp7} que serão substituidas pelas restrições
+    \ref{eq:rt1} e \ref{eq:rt2}.
+  \end{beamerboxesrounded}
+  \vspace{1cm}
+  \begin{beamerboxesrounded}[center,shadow=true]{Restrições}
+    A restrição \ref{eq:rt1} garante que se não ocorreu operações em
+    um passo da execução então não ocorrerá nenhuma operação nos
+    passos seguintes. A restrição \ref{eq:rt2} garante que no máximo
+    uma operação é executada a cada passo.
+    \begin{align}
+      &z_{k} \le z_{k-1}, \text{para todo $1 \le k <
+        n$}. \label{eq:rt1} \\
+      &r_{k} + t_{k} = z_{k} , \text{para
+        todo $1 \le k < n$}. \label{eq:rt2}
+    \end{align}
+  \end{beamerboxesrounded}
+}
+
+%%% Funcao objetivo
+\frame{
+  \frametitle{Modelo - Função Objetivo}
+  \begin{beamerboxesrounded}[center,shadow=true]{Funções Objetivos}
+    \begin{align}
+      \omega_{t} &= \min \sum_{k=1}^{n-1} t_{k}, \text{Transposição}. 
+      \label{eq:fotra} \\
+      \omega_{r} &= \min \sum_{k=1}^{n-1} r_{k}, \text{Reversão}.
+      \label{eq:forev} \\
+      \omega_{rt} &= \min \sum_{k=1}^{n-1} z_{k}, \text{Reversão e
+        Transposição}.
+      \label{eq:fort}
+    \end{align}
   \end{beamerboxesrounded}
 }
 
