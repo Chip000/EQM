@@ -430,7 +430,7 @@
   \end{beamerboxesrounded}
   \begin{columns}[c]
     \begin{column}{5cm}
-      \begin{beamerboxesrounded}[center,shadow=true]{permutation($\pi, N$)}
+      \begin{beamerboxesrounded}[center,shadow=true]{permutation/2}
         %% \begin{algorithm}[H]
         \begin{align}
           per&mutation(\pi, N) :- \nonumber\\
@@ -442,8 +442,7 @@
       \end{beamerboxesrounded}
     \end{column}
     \begin{column}{5cm}
-      \begin{beamerboxesrounded}[center,shadow=true]{transposition($\pi,
-          \sigma, I, J, K$)}
+      \begin{beamerboxesrounded}[center,shadow=true]{transposition/5}
         %% \begin{algorithm}[H]
         \begin{align}
           tra&nsposition(\pi, \sigma, I, J, K) :- \nonumber\\
@@ -457,6 +456,100 @@
       \end{beamerboxesrounded}
     \end{column}
   \end{columns}
+}
+
+\frame{
+  \frametitle{Formulação CSP}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    A formulação baseada na teoria CSP possui um número variável
+    desconhecido, pois precisamos do valor da distância $d(\pi)$ para
+    atribuir as constantes e as variáveis que representam a
+    permutação. Para isso escolhemos um valor candidato para a
+    distância $T \in [L .. U]$, onde $L$ é um valor conhecido para o
+    limitante inferior e $U$ é um valor conhecido para o limitante
+    superior.
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{distance/3}
+    %% \begin{algorithm}[H]
+    \begin{align}
+      dis&tance(\iota, 0, \_Model). \nonumber\\
+      dis&tance(\pi, T, Model) :- \nonumber\\
+      &bound(\pi, Model, LowerBound, UpperBound), \nonumber\\
+      &T :: [LowerBound .. UpperBound], \nonumber\\
+      &indomain(T), \nonumber \\
+      &transposition(\pi, \sigma, \_I, \_J, \_K), \nonumber \\
+      &distance(\sigma, T-1, Model). \nonumber
+    \end{align}
+    %% \end{algorithm}
+  \end{beamerboxesrounded}
+}
+
+%%% formulacao COP
+\frame{
+  \frametitle{Formulação COP}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    A formulação baseada na teoria COP, precisa de um valor para o
+    limitante superior e algumas modificações nos predicados definidos
+    anteriormente. Usamos as variáveis binárias $B$ para indicar
+    quando uma transposição modificou a permutação.\\
+    O predicado $transposition\_cop/6$ é criado para suprir a
+    necessidade de indicar quando a transposição modificou ou não a
+    permutação. Se $(i,j,k) = (0,0,0)$ então $\pi\rho = \pi$. Caso
+    contrário, a permutação foi modificada e então o valor da variável
+    $B$ para este caso é $1$.
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{transposition\_cop/6}
+    %% \begin{algorithm}[H]
+    \begin{align}
+      tra&nsposition\_cop(\iota, \iota, 0, 0, 0, 0). \nonumber\\
+      tra&nsposition\_cop(\pi, \sigma, I, J, K, 1) :- 
+      transposition(\pi, \sigma, I, J, K).\nonumber\\
+    \end{align}
+    %% \end{algorithm}
+  \end{beamerboxesrounded}
+}
+
+\frame{
+  \frametitle{Formulação COP}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    O predicado $distance\_cop/3$ atribui valores as variáveis
+    binárias $B$ utilizando o limitante superior e as restrições
+    fazendo a permutação $\pi_{k} = \pi_{k-1}\rho_{k}$.
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{distance\_cop/3}
+    %% \begin{algorithm}[H]
+    \begin{align}
+      dis&tance\_cop(\pi, N, Model) :- \nonumber\\
+      &bound(\pi, Model, LowerBound, UpperBound), \nonumber\\
+      &length(B, UpperBound), \nonumber\\
+      &upperbound\_constraint(\pi, B, UpperBound), \nonumber \\
+      &sum(B, Cost), \nonumber \\
+      &Cost \ge LowerBound, \nonumber \\
+      &minimize(Cost, N). \nonumber
+    \end{align}
+    %% \end{algorithm}
+  \end{beamerboxesrounded}
+}
+
+\frame{
+  \frametitle{Formulação COP}
+  \begin{beamerboxesrounded}[center,shadow=true]{}
+    O predicado $upperbound\_constraint/3$ recupera os valores de $B$
+    para cada transposição $\rho_{k}$ e insere os efeitos de
+    $\rho_{k}$ sobre a sequência de permutações.
+  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[center,shadow=true]{upperbound\_constraint/3}
+    %% \begin{algorithm}[H]
+    \begin{align}
+      upp&erbound\_constraint(\iota, [~], \_UpperBound). \nonumber\\
+      upp&erbound\_constraint(\pi, [B|Bs], UpperBound) :- \nonumber\\
+      &transposition\_cop(\pi, \sigma, \_I, \_J, \_K, B), \nonumber\\
+      &bound(\pi, Model, LowerBound, \_UpperBound), \nonumber\\
+      &UpperBound \ge LowerBound, \nonumber\\
+      &upperbound\_constraint(\pi, Bs, UpperBound-1). \nonumber \\
+    \end{align}
+    %% \end{algorithm}
+  \end{beamerboxesrounded}
 }
 
 \subsection{Metodologias}
