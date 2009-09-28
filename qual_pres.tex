@@ -45,22 +45,225 @@
 
 \frame{ 
   \frametitle{Introdução} 
-  Esta seção irá introduzir os problemas de rearranjos de genomas,
-  motivações do problema. (2-6 slides) 
+  \begin{itemize}
+  \item{Rearranjo de genomas é uma área que vem recebendo crescente
+      atenção de pesquisadores no decorrer da última década.}
+  \item{Rearranjos são eventos que melhor caracterizam a distância
+      evolutiva entre duas éspécies do que o estudo de mutações
+      pontuais.}
+  \item{No modelo de rearranjo de genomas, um genoma é representado
+      por uma seqüência de elementos inteiros, onde cada inteiro
+      representa um gene ou um grupo de genes.}
+  \end{itemize}
+}
+
+\frame{ 
+  \frametitle{Introdução} 
+  \begin{itemize}
+  \item{A comparação de seqüências é o método mais usual de se
+      caracterizar a ocorrência de mutações pontuais, sendo um dos
+      problemas mais abordados em Biologia Computacional.}
+  \item{O interesse em fazer tal comparação é encontrar a distância de
+      edição, que é o número mínimo de operações de inserção, remoção
+      e substituição necessárias que transformam uma seqüência em
+      outra.}
+  \item{A distância de edição é uma medida capaz de estimar a
+      distância evolutiva entre duas cadeias, mas não possui a
+      informação de quais operações globais foram utilizadas para a
+      transformação de uma seqüência em outra.}
+  \end{itemize}
+}
+
+\frame{ 
+  \frametitle{Introdução} 
+  \begin{itemize}
+  \item{Estas operações globais são os chamados Rearranjos de Genomas,
+      que podem ser, por exemplo, reversões, transposições, fissões e
+      fusões.}
+  \end{itemize}
+  \begin{beamerboxesrounded}[center,shadow=true]{Definição:}
+    Para fins computacionais, um genoma é representado por uma
+    $n$-tupla de genes, quando não há genes repetidos essa $n$-tupla é
+    chamanda de permutação. Uma permutação é representada como $\pi =
+    (\pi_{1}~\pi_{2}~ \ldots~\pi_{n})$, onde $\pi_{i}$, para todo $ 1
+    \le i \le n$, representa um gene (ou um grupo de genes) e os
+    vários eventos de rearranjo $\rho$ são aplicados a $\pi$ de uma
+    maneira específica.
+  \end{beamerboxesrounded}  
 }
 
 \section{Ordenação por Reversões}
 
 \frame{
   \frametitle{Ordenação por Reversões}
-  Explicação relacionando trabalhos já feitos. (2-4 slides)
+  \begin{beamerboxesrounded}[center,shadow=true]{Evento de Reversão:}
+    O evento de reversão ocorre quando um bloco do genoma é
+    invertido. Seja $\rho(i,j)$ uma reversão de um intervalo [i,j] e
+    $\pi = (\pi_{1}~\pi_{2}~ \ldots~\pi_{n})$ uma permutação, no caso
+    em que a permutação é orientada a reversão $\rho$ aplicada a
+    permutação $\pi$ é escrita como:
+    \begin{align}
+      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, ..., \pi_{i-1}, -\pi_{j}, -\pi_{j
+        - 1}, ..., -\pi_{i + 1}, -\pi_{i}, 
+      \pi_{j + 1}, ..., \pi_{n}) \nonumber
+    \end{align}
+    No caso em que a permutação não é orientada a reversão $\rho$ aplicada
+    a permutação $\pi$ é escrita como:
+    \begin{align}
+      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, ..., \pi_{i-1}, \pi_{j}, \pi_{j
+        - 1}, ..., \pi_{i + 1}, \pi_{i}, 
+      \pi_{j + 1}, ..., \pi_{n}) \nonumber
+    \end{align}
+  \end{beamerboxesrounded}  
+}
+
+\frame{
+  \frametitle{Ordenação por Reversões}
+  \begin{itemize}
+  \item{Um estudo inicial sobre o problema da distância de reversão
+      foi apresentado por Bafna e Pevzner, 1993 que apresentaram um
+      algoritmo de aproximação com razão de 1.5 quando a orientação
+      dos genes é conhecida e 1.75 caso contrário.}
+  \item{Conhecer a orientação dos genes em um genoma é importante no
+      problema de reversão, pois existem algoritmos polinomiais caso a
+      orientação seja conhecida.}
+  \item{Entretanto, se não se conhece a orientação dos genes o
+      problema de encontrar a distância de reversão pertence a classe
+      de problemas NP-Difícil, demonstrado em Caprara, Lancia e Ng,
+      1997.}
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{Ordenação por Reversões}
+  \begin{itemize}
+  \item{O primeiro algoritmo polinomial para o problema de reversão
+      com orientação conhecida foi criado por Hannenhalli e Pevzner,
+      1995 que fez uso de várias operações aplicadas a uma estrutura
+      intermediária conhecida como grafo de \textit{breakpoint}.}
+  \item{A estratégia usada por Hannenhalli e Pevzner foi simplificada
+      por Bergeron, 2001.}
+  \item{Já existe um algoritmo com complexidade sub-quadrática
+      apresentado em Tannier e Sagot, 2004.}
+  \item{Bader Moret e Yan, 2001 apresentaram um algoritmo linear
+      quando apenas a distância é necessária.}
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{Ordenação por Reversões}
+  \begin{itemize}
+  \item{Um resultado importante obtido por Meidanis, Walter e Dias,
+      2000, mostrou que toda teoria sobre reversões desenvolvida para
+      genomas lineares pode ser adaptada facilmente para genomas
+      circulares, que são comuns em seres inferiores como vírus e
+      bactérias.}
+  \item{Quando a orientação dos genes não é conhecida existem
+      algoritmos de aproximação que se seguiram ao de Bafna e Pevzner
+      citado anteriormente como, por exemplo, o algoritmo implementado
+      por Berman, Hannenhalli e Karpinski, 2002 com razão de
+      aproximação de 1.375.}
+  \end{itemize}
 }
 
 \section{Ordenação por Transposições}
 
 \frame{
   \frametitle{Ordenação por Transposições}
-  Explicação relacionando trabalhos já feitos. (2-4 slides)
+  \begin{beamerboxesrounded}[center,shadow=true]{Evento de Transposição:}
+    O evento de transposição ocorre quando dois blocos adjacentes no
+    genoma trocam de posição. Representando-se um genoma pela
+    permutação $\pi = (\pi_{1} \pi_{2} \ldots{} \pi_{n})$ , uma
+    transposição $\rho(i, j, k)$, onde $1 \le i < j < k \le n + 1$,
+    faz com que um intervalo $[i, j - 1]$ de $\pi$ seja inserido entre
+    $\pi_{k - 1}$ e $\pi_{k}$, de outra forma, a transposição $\rho(i,
+    j, k)$ aplicada a permutação $\pi$ é escrita como:
+    \begin{align}
+      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, \ldots, \pi_{i-1}, \pi_{j},
+      \ldots, \pi_{k - 1}, \nonumber \\
+      &\pi_{i}, \pi_{i + 1}, \ldots, \pi_{j - 2}, \pi_{j - 1},\pi_{k},
+      \ldots, \pi_{n}). \nonumber
+    \end{align}
+  \end{beamerboxesrounded}  
+}
+
+\frame{
+  \frametitle{Ordenação por Transposições}
+  \begin{itemize}
+  \item{O problema de encontrar a distância de transposição, que
+      envolve encontrar o menor número de transposições necessárias
+      para transformar um genoma em outro.}
+  \item{Estudado por Bafna e Pevzner, 1995, que apresentaram um
+      algoritmo capaz de fornecer uma resposta aproximada na razão de
+      1.5, além de derivar um importante limitante inferior para o
+      problema.}
+  \item{Talvez a maior contribuição do trabalho de Bafna e Pevzner
+      resida nas heurísticas implementadas, que utilizaram o conceito
+      de \textit{breakpoints} e uma ferramenta que chamou de grafo de
+      cíclos orientados com arestas de cores alternadas, que fora
+      bastante utilizada em trabalhos posteriores.}
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{Ordenação por Transposições}
+  \begin{itemize}
+  \item{Não se conhece nenhuma prova de que o problema da
+      distância de transposição pertence a classe dos problemas
+      NP-Difícil, sendo que também não existem evidências da
+      existência de um algoritmo polinomial, o que torna o estudo do
+      problema interessante.}
+  \item{Recentemente, Elias e Hartman, 2006 propuseram um novo
+      algoritmo de aproximação na razão de 1.375.}
+  \item{Labarre, 2006 apresentou novos limitantes, além de definir
+      classes de permutações em que a distância de transposição pode
+      ser calculada em tempo e espaço lineares.}
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{Ordenação por Transposições}
+  \begin{itemize}
+  \item{Uma generalização do problema de transposição é a operação de
+      troca de blocos, cuja solução pode auxiliar na resolução do
+      problema da distância de transposição, já que a distância de
+      troca de blocos entre dois genomas é um problema com solução
+      polinomial para qualquer permutação.}
+  \item{Christie, 1996 apresentou um algoritmo polinomial para o
+      problema de troca de blocos e utilizou, na implementação do
+      algoritmo, conceitos já conhecidos na literatura sobre
+      transposição.}
+  \end{itemize}
+}
+
+\section{Ordenação por Reversões e Transposições}
+
+\frame{
+  \frametitle{Ordenação por Reversões e Transposições}
+  \begin{itemize}
+  \item{No que diz a respeito apenas aos eventos de reversão e
+      transposição existe o trabalho de Hannenhalli e co-autores,
+      1995, que analisaram a evolução de genomas por diferentes
+      eventos, em especial reversões e transposições.}
+  \item{Gu, Peng e Sudborough, 1996 criaram um algoritmo de
+      aproximação para computar a distância entre dois genomas com a
+      orientação dos genes conhecida permitindo operações de reversão,
+      transposição e reversão+transposição simultaneamente.}
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{Ordenação por Reversões e Transposições}
+  \begin{itemize}
+  \item{Walter, Dias e Meidanis, 1998 apresentaram um algoritmo de
+      aproximação para a distância de reversão e transposição, além de
+      limitantes para o diâmetro de reversão e transposição em
+      permutações orientadas que foram posteriormente melhorados em
+      Meidanis, Walter e Dias, 2002.}
+  \item{Dias e de Souza, 2007 apresentaram uma modelagem com
+      programação linear inteira para o problema de reversão,
+      transposição ou reversão e transposição simultaneamente.}
+  \end{itemize}
 }
 
 \section{Programação Linear Inteira}
@@ -68,7 +271,7 @@
 \frame{
   \frametitle{Programação Linear Inteira}
   \begin{itemize}
-  \item{Apresentado por Dias e de Souza,2007.}
+  \item{Apresentado por Dias e de Souza, 2007.}
   \item{Modelo para o problema da distância com tamanho polinomial.}
   \item{Modelo específico para os eventos de reversão, transposição ou
       reversão e transposição simultaneamente.}
@@ -391,7 +594,10 @@
 \subsection{Metodologias}
 \frame{
   \frametitle{Metodologias}
-  Explicação dos métodos que irão ser usados. (1-4 slides)
+  Explicação dos métodos que irão ser usados. (1-4 slides) \\
+  Explicar que podemos utilizar a Relaxação Lagrangeana ou criar um
+  novo modelo e aplicar técnicas como branch-and-cut ou geração de
+  colunas.
 }
 
 \section{Programação Lógica por Restrições}
@@ -399,7 +605,7 @@
 \frame{
   \frametitle{Programação Lógica por Restrições}
   \begin{itemize}
-  \item{Apresentado por Dias e Dias,2009.}
+  \item{Apresentado por Dias e Dias, 2009.}
   \item{Modelo específico para o eventos de transposição.}
   \item{Duas formulações. Uma baseada na teoria do Problema de
       Satisfação de Restrições (CSP) e a outra baseada na teoria do
@@ -536,7 +742,7 @@
   \begin{beamerboxesrounded}[center,shadow=true]{}
     O predicado $upperbound\_constraint/3$ recupera os valores de $B$
     para cada transposição $\rho_{k}$ e insere os efeitos de
-    $\rho_{k}$ sobre a sequência de permutações.
+    $\rho_{k}$ sobre a seqüência de permutações.
   \end{beamerboxesrounded}
   \begin{beamerboxesrounded}[center,shadow=true]{upperbound\_constraint/3}
     %% \begin{algorithm}[H]
@@ -552,25 +758,117 @@
   \end{beamerboxesrounded}
 }
 
+\normalsize
+
 \subsection{Metodologias}
 \frame{
   \frametitle{Metodologias}
-  Explicação dos métodos que irão ser usados. (1-4 slides)
+  Explicação dos métodos que irão ser usados. (1-4 slides) \\
+  Aproveitar o fato do modelo não estar usando informações que
+  poderiam melhorar os resultados. Por exemplo, o grafo de cíclos da
+  permutação que pode auxiliar na escolha de qual conjunto de
+  transposições vai ser ramificado primeiro.
 }
 
 \section{Objetivos}
 
 \frame{
   \frametitle{Objetivos}
-  Objetivos do projeto
+  \begin{itemize}
+  \item{Procurar um método para melhorar o tempo de execução do modelo
+      de programação linear inteira apresentado por Dias e de Souza,
+      2007, desta forma tornando o uso desta abordagem viável para o
+      uso na prática.}
+  \item{Aprimorar o modelo de programação por restrições apresentado
+      por Dias e Dias, 2009.}
+  \end{itemize}
 }
 
 \section{Cronograma}
 
 \frame{
   \frametitle{Cronograma}
-  Cronograma com as atividades a serem desenvolvidas (1-3 slides)
+  \begin{itemize}
+  \item{1. Cumprimento das disciplinas obrigatórias do programa de mestrado.}
+  \item{2. Revisão Bibliográfica dos artigos clássicos sobre rearranjo
+      de genomas.}
+  \item{3. Escrita do projeto de mestrado e exame de qualificação.}
+  \item{4. Estudo e desenvolvimento sobre o modelo de programação
+      linear inteira para o problema de rearranjo de genomas.}
+  \item{5. Estudo e desenvolvimento sobre o modelo de programação
+      por restrições para o problema de rearranjo de genomas.}
+  \end{itemize}
 }
 
+\frame{
+  \frametitle{Cronograma}
+  \begin{itemize}
+  \item{6. Testes dos modelos desenvolvidos.}
+  \item{7. Escrita da dissertação. A escrita começará a ser feita a
+      partir dos primeiros resultados.}
+  \item{8. Revisão final do texto da dissertação.}
+  \item{9. Defesa da dissertação.}
+  \end{itemize}
+}
+
+\frame{
+  \frametitle{Cronograma}
+  \begin{table}[ht]
+    \begin{center}
+      \small
+      \begin{tabular}{||c|| c|c|c|c|c|c|c|c|c|c || c|c ||}
+        \hline \hline
+        
+        %% Anos
+        Ativ. & \multicolumn{10}{c||}{2009} & \multicolumn{2}{c||}{2010} \\
+        \cline{02-13}
+        
+        %% Meses
+        & 03 & 04 & 05 & 06 & 07 & 08 & 09 & 10 & 11 & 12 & 01 & 02 \\
+        \hline
+        \hline          %$\surd$   0   0   0   0   0   0   0   1   1   1   0   0
+        % 3   4   5   6   7   8   9   0   1   2   1   2
+        1                        & x & x & x & x & x & x & x & x & x & x &   &   \\ \hline
+        2                        & x & x & x & x & x & x & x & x & x & x &   &   \\ \hline
+        3                        &   &   &   &   & x & x & x &   &   &   &   &   \\ \hline
+        4                        &   &   &   &   &   &   &   &   &   &   & x & x \\ \hline
+        \hline
+      \end{tabular}
+      \caption{Cronograma de atividades (mar/2009 - fev/2010)}
+      \label{tab:cron1}
+    \end{center}
+  \end{table}
+}
+
+\frame{
+  \frametitle{Cronograma}
+  \begin{table}[ht]
+    \begin{center}
+      \small
+      \begin{tabular}{||c|| c|c|c|c|c|c|c|c|c|c || c|c ||}
+        \hline \hline
+        
+        %% Anos
+        Ativ. & \multicolumn{10}{c||}{2010} & \multicolumn{2}{c||}{2011} \\
+        \cline{02-13}
+        
+        %% Meses
+        & 03 & 04 & 05 & 06 & 07 & 08 & 09 & 10 & 11 & 12 & 01 & 02 \\
+        \hline
+        \hline          %$\surd$   0   0   0   0   0   0   0   1   1   1   0   0
+        % 3   4   5   6   7   8   9   0   1   2   1   2
+        4                        & x & x & x & x &   &   &   &   &   &   &   &   \\ \hline
+        5                        &   &   &   &   & x & x & x & x & x & x &   &   \\ \hline
+        6                        &   & x & x & x &   &   &   & x & x & x &   &   \\ \hline
+        7                        &   & x & x & x &   &   &   & x & x & x &   &   \\ \hline
+        8                        &   &   &   &   &   &   &   &   &   &   & x &   \\ \hline
+        9                        &   &   &   &   &   &   &   &   &   &   &   & x \\ \hline
+        \hline
+      \end{tabular}
+      \caption{Cronograma de atividades (mar/2010 - fev/2011)}
+      \label{tab:cron2}
+    \end{center}
+  \end{table}
+}
 
 \end{document}
