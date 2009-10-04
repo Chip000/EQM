@@ -52,7 +52,7 @@
       evolutiva entre duas éspécies do que o estudo de mutações
       pontuais.}
   \item{No modelo de rearranjo de genomas, um genoma é representado
-      por uma seqüência de elementos inteiros, onde cada inteiro
+      por uma seqüência de números inteiros, onde cada inteiro
       representa um gene ou um grupo de genes.}
   \end{itemize}
 }
@@ -78,8 +78,8 @@
   \frametitle{Introdução} 
   \begin{itemize}
   \item{Estas operações globais são os chamados Rearranjos de Genomas,
-      que podem ser, por exemplo, reversões, transposições, fissões e
-      fusões.}
+      que podem ser, por exemplo, Reversões, Transposições, Fissões e
+      Fusões.}
   \end{itemize}
   \begin{beamerboxesrounded}[center,shadow=true]{Definição:}
     Para fins computacionais, um genoma é representado por uma
@@ -121,7 +121,7 @@
   \frametitle{Ordenação por Reversões}
   \begin{itemize}
   \item{Um estudo inicial sobre o problema da distância de reversão
-      foi apresentado por Bafna e Pevzner, 1993 que apresentaram um
+      foi apresentado por Bafna e Pevzner (1993) que apresentaram um
       algoritmo de aproximação com razão de 1.5 quando a orientação
       dos genes é conhecida e 1.75 caso contrário.}
   \item{Conhecer a orientação dos genes em um genoma é importante no
@@ -129,8 +129,8 @@
       orientação seja conhecida.}
   \item{Entretanto, se não se conhece a orientação dos genes o
       problema de encontrar a distância de reversão pertence a classe
-      de problemas NP-Difícil, demonstrado em Caprara, Lancia e Ng,
-      1997.}
+      de problemas NP-Difícil, demonstrado em Caprara, Lancia e Ng
+      (1997).}
   \end{itemize}
 }
 
@@ -138,14 +138,14 @@
   \frametitle{Ordenação por Reversões}
   \begin{itemize}
   \item{O primeiro algoritmo polinomial para o problema de reversão
-      com orientação conhecida foi criado por Hannenhalli e Pevzner,
-      1995 que fez uso de várias operações aplicadas a uma estrutura
+      com orientação conhecida foi criado por Hannenhalli e Pevzner
+      (1995) que fez uso de várias operações aplicadas a uma estrutura
       intermediária conhecida como grafo de \textit{breakpoint}.}
   \item{A estratégia usada por Hannenhalli e Pevzner foi simplificada
-      por Bergeron, 2001.}
-  \item{Já existe um algoritmo com complexidade sub-quadrática
-      apresentado em Tannier e Sagot, 2004.}
-  \item{Bader Moret e Yan, 2001 apresentaram um algoritmo linear
+      por Bergeron (2001).}
+  \item{Existe um algoritmo com complexidade sub-quadrática
+      apresentado por Tannier e Sagot (2004).}
+  \item{Bader Moret e Yan (2001) apresentaram um algoritmo linear
       quando apenas a distância é necessária.}
   \end{itemize}
 }
@@ -153,15 +153,15 @@
 \frame{
   \frametitle{Ordenação por Reversões}
   \begin{itemize}
-  \item{Um resultado importante obtido por Meidanis, Walter e Dias,
-      2000, mostrou que toda teoria sobre reversões desenvolvida para
-      genomas lineares pode ser adaptada facilmente para genomas
+  \item{Um resultado importante obtido por Meidanis, Walter e Dias
+      (2000), mostrou que toda teoria sobre reversões desenvolvida
+      para genomas lineares pode ser adaptada facilmente para genomas
       circulares, que são comuns em seres inferiores como vírus e
       bactérias.}
   \item{Quando a orientação dos genes não é conhecida existem
       algoritmos de aproximação que se seguiram ao de Bafna e Pevzner
       citado anteriormente como, por exemplo, o algoritmo implementado
-      por Berman, Hannenhalli e Karpinski, 2002 com razão de
+      por Berman, Hannenhalli e Karpinski (2002) com razão de
       aproximação de 1.375.}
   \end{itemize}
 }
@@ -193,7 +193,7 @@
   \item{O problema de encontrar a distância de transposição, que
       envolve encontrar o menor número de transposições necessárias
       para transformar um genoma em outro.}
-  \item{Estudado por Bafna e Pevzner, 1995, que apresentaram um
+  \item{Estudado por Bafna e Pevzner (1995), que apresentaram um
       algoritmo capaz de fornecer uma resposta aproximada na razão de
       1.5, além de derivar um importante limitante inferior para o
       problema.}
@@ -213,9 +213,9 @@
       NP-Difícil, sendo que também não existem evidências da
       existência de um algoritmo polinomial, o que torna o estudo do
       problema interessante.}
-  \item{Recentemente, Elias e Hartman, 2006 propuseram um novo
+  \item{Recentemente, Elias e Hartman (2006) propuseram um novo
       algoritmo de aproximação na razão de 1.375.}
-  \item{Labarre, 2006 apresentou novos limitantes, além de definir
+  \item{Labarre (2006) apresentou novos limitantes, além de definir
       classes de permutações em que a distância de transposição pode
       ser calculada em tempo e espaço lineares.}
   \end{itemize}
@@ -229,7 +229,7 @@
       problema da distância de transposição, já que a distância de
       troca de blocos entre dois genomas é um problema com solução
       polinomial para qualquer permutação.}
-  \item{Christie, 1996 apresentou um algoritmo polinomial para o
+  \item{Christie (1996) apresentou um algoritmo polinomial para o
       problema de troca de blocos e utilizou, na implementação do
       algoritmo, conceitos já conhecidos na literatura sobre
       transposição.}
@@ -242,10 +242,10 @@
   \frametitle{Ordenação por Reversões e Transposições}
   \begin{itemize}
   \item{No que diz a respeito apenas aos eventos de reversão e
-      transposição existe o trabalho de Hannenhalli e co-autores,
-      1995, que analisaram a evolução de genomas por diferentes
+      transposição existe o trabalho de Hannenhalli e co-autores
+      (1995), que analisaram a evolução de genomas por diferentes
       eventos, em especial reversões e transposições.}
-  \item{Gu, Peng e Sudborough, 1996 criaram um algoritmo de
+  \item{Gu, Peng e Sudborough (1996) criaram um algoritmo de
       aproximação para computar a distância entre dois genomas com a
       orientação dos genes conhecida permitindo operações de reversão,
       transposição e reversão+transposição simultaneamente.}
@@ -255,12 +255,12 @@
 \frame{
   \frametitle{Ordenação por Reversões e Transposições}
   \begin{itemize}
-  \item{Walter, Dias e Meidanis, 1998 apresentaram um algoritmo de
+  \item{Walter, Dias e Meidanis (1998) apresentaram um algoritmo de
       aproximação para a distância de reversão e transposição, além de
       limitantes para o diâmetro de reversão e transposição em
       permutações orientadas que foram posteriormente melhorados em
-      Meidanis, Walter e Dias, 2002.}
-  \item{Dias e de Souza, 2007 apresentaram uma modelagem com
+      Meidanis, Walter e Dias (2002).}
+  \item{Dias e de Souza (2007) apresentaram uma modelagem com
       programação linear inteira para o problema de reversão,
       transposição ou reversão e transposição simultaneamente.}
   \end{itemize}
@@ -271,7 +271,7 @@
 \frame{
   \frametitle{Programação Linear Inteira}
   \begin{itemize}
-  \item{Apresentado por Dias e de Souza, 2007.}
+  \item{Apresentado por Dias e de Souza (2007).}
   \item{Modelo para o problema da distância com tamanho polinomial.}
   \item{Modelo específico para os eventos de reversão, transposição ou
       reversão e transposição simultaneamente.}
@@ -431,7 +431,7 @@
   \frametitle{Modelo - Transposição - Restrições}
   \begin{beamerboxesrounded}[center,shadow=true]{}
     Usando o limitante superior e o inferior definido por Bafna e
-    Pevzner,1998, obtemos as seguintes restrições. \\
+    Pevzner (1998), obtemos as seguintes restrições. \\
     \begin{align}
       t_{k} * n + k - 1 &\ge LB(\pi,\sigma), \text{para todo $1 \le k
         \le n$}. \label{eq:transp6} \\
@@ -605,7 +605,7 @@
 \frame{
   \frametitle{Programação Lógica por Restrições}
   \begin{itemize}
-  \item{Apresentado por Dias e Dias, 2009.}
+  \item{Apresentado por Dias e Dias (2009).}
   \item{Modelo específico para o eventos de transposição.}
   \item{Duas formulações. Uma baseada na teoria do Problema de
       Satisfação de Restrições (CSP) e a outra baseada na teoria do
@@ -709,7 +709,7 @@
     \begin{align}
       tra&nsposition\_cop(\iota, \iota, 0, 0, 0, 0). \nonumber\\
       tra&nsposition\_cop(\pi, \sigma, I, J, K, 1) :- 
-      transposition(\pi, \sigma, I, J, K).\nonumber\\
+      transposition(\pi, \sigma, I, J, K).\nonumber
     \end{align}
     %% \end{algorithm}
   \end{beamerboxesrounded}
@@ -752,7 +752,7 @@
       &transposition\_cop(\pi, \sigma, \_I, \_J, \_K, B), \nonumber\\
       &bound(\pi, Model, LowerBound, \_UpperBound), \nonumber\\
       &UpperBound \ge LowerBound, \nonumber\\
-      &upperbound\_constraint(\pi, Bs, UpperBound-1). \nonumber \\
+      &upperbound\_constraint(\pi, Bs, UpperBound-1). \nonumber
     \end{align}
     %% \end{algorithm}
   \end{beamerboxesrounded}
@@ -776,11 +776,11 @@
   \frametitle{Objetivos}
   \begin{itemize}
   \item{Procurar um método para melhorar o tempo de execução do modelo
-      de programação linear inteira apresentado por Dias e de Souza,
-      2007, desta forma tornando o uso desta abordagem viável para o
+      de programação linear inteira apresentado por Dias e de Souza
+      (2007), desta forma tornando o uso desta abordagem viável para o
       uso na prática.}
   \item{Aprimorar o modelo de programação por restrições apresentado
-      por Dias e Dias, 2009.}
+      por Dias e Dias (2009).}
   \end{itemize}
 }
 
