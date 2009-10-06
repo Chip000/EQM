@@ -64,13 +64,13 @@
       caracterizar a ocorrência de mutações pontuais, sendo um dos
       problemas mais abordados em Biologia Computacional.}
   \item{O interesse em fazer tal comparação é encontrar a distância de
-      edição, que é o número mínimo de operações de inserção, remoção
-      e substituição necessárias que transformam uma seqüência em
-      outra.}
-  \item{A distância de edição é uma medida capaz de estimar a
-      distância evolutiva entre duas cadeias, mas não possui a
-      informação de quais operações globais foram utilizadas para a
-      transformação de uma seqüência em outra.}
+      edição}
+  \item{A distância de edição é o número mínimo de operações de
+      inserção, remoção e substituição necessárias que transformam uma
+      seqüência em outra.}
+  \item{Estima a distância evolutiva entre duas cadeias, mas não
+      informa quais operações globais foram utilizadas para
+      transformar uma seqüência em outra.}
   \end{itemize}
 }
 
@@ -98,39 +98,54 @@
   \frametitle{Ordenação por Reversões}
   \begin{beamerboxesrounded}[center,shadow=true]{Evento de Reversão:}
     O evento de reversão ocorre quando um bloco do genoma é
-    invertido. Seja $\rho(i,j)$ uma reversão de um intervalo [i,j] e
-    $\pi = (\pi_{1}~\pi_{2}~ \ldots~\pi_{n})$ uma permutação, no caso
-    em que a permutação é orientada a reversão $\rho$ aplicada a
-    permutação $\pi$ é escrita como:
-    \begin{align}
-      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, ..., \pi_{i-1}, -\pi_{j}, -\pi_{j
-        - 1}, ..., -\pi_{i + 1}, -\pi_{i}, 
-      \pi_{j + 1}, ..., \pi_{n}) \nonumber
-    \end{align}
-    No caso em que a permutação não é orientada a reversão $\rho$ aplicada
-    a permutação $\pi$ é escrita como:
-    \begin{align}
-      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, ..., \pi_{i-1}, \pi_{j}, \pi_{j
-        - 1}, ..., \pi_{i + 1}, \pi_{i}, 
-      \pi_{j + 1}, ..., \pi_{n}) \nonumber
-    \end{align}
-  \end{beamerboxesrounded}  
+    invertido. 
+  \end{beamerboxesrounded}
+  \begin{columns}[t]
+    \begin{column}{5cm}
+      \begin{figure}
+        \centering
+        \includegraphics[width=4.5cm]{fig/rev02.png}
+        \caption{Reversão onde a permutação é orientada}
+      \end{figure}
+    \end{column}
+    \begin{column}{5cm}
+      \begin{figure}
+        \centering
+        \includegraphics[width=4.5cm]{fig/rev01.png}
+        \caption{Reversão onde a permutação não é orientada}
+      \end{figure}
+    \end{column}
+  \end{columns}
+%%    Seja $\rho(i,j)$ uma reversão de um intervalo [i,j] e
+%%    $\pi = (\pi_{1}~\pi_{2}~ \ldots~\pi_{n})$ uma permutação, no caso
+%%    em que a permutação é orientada a reversão $\rho$ aplicada a
+%%    permutação $\pi$ é escrita como:
+%%    \begin{align}
+%%      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, ..., \pi_{i-1}, -\pi_{j}, -\pi_{j
+%%        - 1}, ..., -\pi_{i + 1}, -\pi_{i}, 
+%%      \pi_{j + 1}, ..., \pi_{n}) \nonumber
+%%    \end{align}
+%%    No caso em que a permutação não é orientada a reversão $\rho$ aplicada
+%%    a permutação $\pi$ é escrita como:
+%%    \begin{align}
+%%      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, ..., \pi_{i-1}, \pi_{j}, \pi_{j
+%%        - 1}, ..., \pi_{i + 1}, \pi_{i}, 
+%%      \pi_{j + 1}, ..., \pi_{n}) \nonumber
+%%    \end{align}
 }
 
 \frame{
   \frametitle{Ordenação por Reversões}
   \begin{itemize}
-  \item{Um estudo inicial sobre o problema da distância de reversão
-      foi apresentado por Bafna e Pevzner (1993) que apresentaram um
+  \item{Em um estudo inicial Bafna e Pevzner (1993) apresentaram um
       algoritmo de aproximação com razão de 1.5 quando a orientação
       dos genes é conhecida e 1.75 caso contrário.}
   \item{Conhecer a orientação dos genes em um genoma é importante no
       problema de reversão, pois existem algoritmos polinomiais caso a
       orientação seja conhecida.}
-  \item{Entretanto, se não se conhece a orientação dos genes o
-      problema de encontrar a distância de reversão pertence a classe
-      de problemas NP-Difícil, demonstrado em Caprara, Lancia e Ng
-      (1997).}
+  \item{Se não se conhece a orientação dos genes este problema pertence
+      a classe de problemas NP-Difícil, demonstrado em Caprara, Lancia
+      e Ng (1997).}
   \end{itemize}
 }
 
@@ -139,8 +154,9 @@
   \begin{itemize}
   \item{O primeiro algoritmo polinomial para o problema de reversão
       com orientação conhecida foi criado por Hannenhalli e Pevzner
-      (1995) que fez uso de várias operações aplicadas a uma estrutura
-      intermediária conhecida como grafo de \textit{breakpoint}.}
+      (1995).}
+%% que fez uso de várias operações aplicadas a uma estrutura
+%% intermediária conhecida como grafo de \textit{breakpoint}.}
   \item{A estratégia usada por Hannenhalli e Pevzner foi simplificada
       por Bergeron (2001).}
   \item{Existe um algoritmo com complexidade sub-quadrática
@@ -153,11 +169,9 @@
 \frame{
   \frametitle{Ordenação por Reversões}
   \begin{itemize}
-  \item{Um resultado importante obtido por Meidanis, Walter e Dias
-      (2000), mostrou que toda teoria sobre reversões desenvolvida
-      para genomas lineares pode ser adaptada facilmente para genomas
-      circulares, que são comuns em seres inferiores como vírus e
-      bactérias.}
+  \item{Meidanis, Walter e Dias (2000), mostrou que toda teoria sobre
+      reversões desenvolvida para genomas lineares pode ser adaptada
+      facilmente para genomas circulares.}
   \item{Quando a orientação dos genes não é conhecida existem
       algoritmos de aproximação que se seguiram ao de Bafna e Pevzner
       citado anteriormente como, por exemplo, o algoritmo implementado
@@ -172,19 +186,26 @@
   \frametitle{Ordenação por Transposições}
   \begin{beamerboxesrounded}[center,shadow=true]{Evento de Transposição:}
     O evento de transposição ocorre quando dois blocos adjacentes no
-    genoma trocam de posição. Representando-se um genoma pela
-    permutação $\pi = (\pi_{1} \pi_{2} \ldots{} \pi_{n})$ , uma
-    transposição $\rho(i, j, k)$, onde $1 \le i < j < k \le n + 1$,
-    faz com que um intervalo $[i, j - 1]$ de $\pi$ seja inserido entre
-    $\pi_{k - 1}$ e $\pi_{k}$, de outra forma, a transposição $\rho(i,
-    j, k)$ aplicada a permutação $\pi$ é escrita como:
-    \begin{align}
-      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, \ldots, \pi_{i-1}, \pi_{j},
-      \ldots, \pi_{k - 1}, \nonumber \\
-      &\pi_{i}, \pi_{i + 1}, \ldots, \pi_{j - 2}, \pi_{j - 1},\pi_{k},
-      \ldots, \pi_{n}). \nonumber
-    \end{align}
-  \end{beamerboxesrounded}  
+    genoma trocam de posição. 
+  \end{beamerboxesrounded}
+  \begin{figure}
+    \centering
+    \includegraphics[width=6cm]{fig/transv.png}
+    \caption{Transposição aplicada em uma permutação.}
+  \end{figure}
+%%    Representando-se um genoma pela
+%%    permutação $\pi = (\pi_{1} \pi_{2} \ldots{} \pi_{n})$ , uma
+%%    transposição $\rho(i, j, k)$, onde $1 \le i < j < k \le n + 1$,
+%%    faz com que um intervalo $[i, j - 1]$ de $\pi$ seja inserido entre
+%%    $\pi_{k - 1}$ e $\pi_{k}$, de outra forma, a transposição $\rho(i,
+%%    j, k)$ aplicada a permutação $\pi$ é escrita como:
+%%    \begin{align}
+%%      \pi \cdot \rho = (&\pi_{1}, \pi_{2}, \ldots, \pi_{i-1}, \pi_{j},
+%%      \ldots, \pi_{k - 1}, \nonumber \\
+%%      &\pi_{i}, \pi_{i + 1}, \ldots, \pi_{j - 2}, \pi_{j - 1},\pi_{k},
+%%      \ldots, \pi_{n}). \nonumber
+%%    \end{align}
+%%  \end{beamerboxesrounded}
 }
 
 \frame{
@@ -193,26 +214,22 @@
   \item{O problema de encontrar a distância de transposição, que
       envolve encontrar o menor número de transposições necessárias
       para transformar um genoma em outro.}
-  \item{Estudado por Bafna e Pevzner (1995), que apresentaram um
-      algoritmo capaz de fornecer uma resposta aproximada na razão de
-      1.5, além de derivar um importante limitante inferior para o
-      problema.}
+  \item{Bafna e Pevzner (1995) apresentaram um algoritmo capaz de
+      fornecer uma resposta aproximada na razão de 1.5, além de
+      derivar um importante limitante inferior para o problema.}
   \item{Talvez a maior contribuição do trabalho de Bafna e Pevzner
-      resida nas heurísticas implementadas, que utilizaram o conceito
-      de \textit{breakpoints} e uma ferramenta que chamou de grafo de
-      cíclos orientados com arestas de cores alternadas, que fora
-      bastante utilizada em trabalhos posteriores.}
+      resida nas heurísticas implementadas, que utilizaram os
+      conceitos de \textit{breakpoints} e de grafo de cíclos
+      orientados com arestas de cores alternadas.}
   \end{itemize}
 }
 
 \frame{
   \frametitle{Ordenação por Transposições}
   \begin{itemize}
-  \item{Não se conhece nenhuma prova de que o problema da
-      distância de transposição pertence a classe dos problemas
-      NP-Difícil, sendo que também não existem evidências da
-      existência de um algoritmo polinomial, o que torna o estudo do
-      problema interessante.}
+  \item{Não se conhece provas que este problema pertence a classe dos
+      problemas NP-Difícil e não se conhece algoritmos polinomiais, o
+      que torna o estudo do problema interessante.}
   \item{Recentemente, Elias e Hartman (2006) propuseram um novo
       algoritmo de aproximação na razão de 1.375.}
   \item{Labarre (2006) apresentou novos limitantes, além de definir
@@ -226,13 +243,12 @@
   \begin{itemize}
   \item{Uma generalização do problema de transposição é a operação de
       troca de blocos, cuja solução pode auxiliar na resolução do
-      problema da distância de transposição, já que a distância de
-      troca de blocos entre dois genomas é um problema com solução
-      polinomial para qualquer permutação.}
+      problema da distância de transposição.}
+  \item{A distância de troca de blocos entre dois genomas é um
+      problema com solução polinomial para qualquer permutação.}
   \item{Christie (1996) apresentou um algoritmo polinomial para o
-      problema de troca de blocos e utilizou, na implementação do
-      algoritmo, conceitos já conhecidos na literatura sobre
-      transposição.}
+      problema de troca de blocos e utilizou conceitos já conhecidos
+      na literatura sobre transposição.}
   \end{itemize}
 }
 
@@ -241,10 +257,9 @@
 \frame{
   \frametitle{Ordenação por Reversões e Transposições}
   \begin{itemize}
-  \item{No que diz a respeito apenas aos eventos de reversão e
-      transposição existe o trabalho de Hannenhalli e co-autores
-      (1995), que analisaram a evolução de genomas por diferentes
-      eventos, em especial reversões e transposições.}
+  \item{Hannenhalli e co-autores (1995) analisaram a evolução de
+      genomas por diferentes eventos, em especial reversões e
+      transposições.}
   \item{Gu, Peng e Sudborough (1996) criaram um algoritmo de
       aproximação para computar a distância entre dois genomas com a
       orientação dos genes conhecida permitindo operações de reversão,
@@ -777,8 +792,7 @@
   \begin{itemize}
   \item{Procurar um método para melhorar o tempo de execução do modelo
       de programação linear inteira apresentado por Dias e de Souza
-      (2007), desta forma tornando o uso desta abordagem viável para o
-      uso na prática.}
+      (2007).}
   \item{Aprimorar o modelo de programação por restrições apresentado
       por Dias e Dias (2009).}
   \end{itemize}
