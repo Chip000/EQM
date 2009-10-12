@@ -261,8 +261,9 @@
       transposições.}
   \item{Gu, Peng e Sudborough (1996) criaram um algoritmo de
       aproximação para computar a distância entre dois genomas com a
-      orientação dos genes conhecida permitindo operações de reversão,
-      transposição e reversão+transposição simultaneamente.}
+      orientação dos genes conhecida.}
+  \item{O algoritmo permite operações de reversão, transposição e
+      reversão+transposição simultaneamente.}
   \end{itemize}
 }
 
@@ -270,9 +271,9 @@
   \frametitle{Ordenação por Reversões e Transposições}
   \begin{itemize}
   \item{Walter, Dias e Meidanis (1998) apresentaram um algoritmo de
-      aproximação para a distância de reversão e transposição, além de
-      limitantes para o diâmetro de reversão e transposição em
-      permutações orientadas que foram posteriormente melhorados em
+      aproximação para a distância de reversão e transposição.}
+  \item{Também forneceram limitantes para o diâmetro de reversão e
+      transposição em permutações orientadas que foram melhorados em
       Meidanis, Walter e Dias (2002).}
   \item{Dias e de Souza (2007) apresentaram uma modelagem com
       programação linear inteira para o problema de reversão,
@@ -606,12 +607,22 @@
 \normalsize
 
 \subsection{Metodologias}
+
 \frame{
   \frametitle{Metodologias}
-  Explicação dos métodos que irão ser usados. (1-4 slides) \\
-  Explicar que podemos utilizar a Relaxação Lagrangeana ou criar um
-  novo modelo e aplicar técnicas como branch-and-cut ou geração de
-  colunas.
+  \begin{itemize}
+  \item{Aprimorar o modelo já existente usando técnicas de Relaxação
+      Lagrangeana. Restrições complicadoras servirão como penalização
+      na função objetivo do problema.}
+  \item{Criação de um novo modelo, ``não se importando'' com o tamanho
+      do modelo, com o objetivo de aplicar técnicas como:
+    \begin{itemize}
+    \item{Geração de Colunas: se o problema possuir um número
+        não-polinomial de variáveis.}
+    \item{\textit{Branch-and-Cut}, se o problema possuir um número
+        não-polinomial de restrições.}
+    \end{itemize}}
+  \end{itemize}
 }
 
 \section{Programação Lógica por Restrições}
@@ -775,13 +786,16 @@
 \normalsize
 
 \subsection{Metodologias}
+
 \frame{
   \frametitle{Metodologias}
-  Explicação dos métodos que irão ser usados. (1-4 slides) \\
-  Aproveitar o fato do modelo não estar usando informações que
-  poderiam melhorar os resultados. Por exemplo, o grafo de cíclos da
-  permutação que pode auxiliar na escolha de qual conjunto de
-  transposições vai ser ramificado primeiro.
+  \begin{itemize}
+  \item{Adicionar predicados com informações não utilizadas pelas
+      formulações citadas anteriormente.}
+  \item{Podemos citar como exemplo, o grafo de cíclos da permutação que pode
+      auxiliar na escolha de qual conjunto de transposições vai ser
+      ramificado primeiro.}
+  \end{itemize}
 }
 
 \section{Objetivos}
