@@ -63,8 +63,6 @@
   \item{A comparação de seqüências é o método mais usual de se
       caracterizar a ocorrência de mutações pontuais, sendo um dos
       problemas mais abordados em Biologia Computacional.}
-  \item{O interesse em fazer tal comparação é encontrar a distância de
-      edição}
   \item{A distância de edição é o número mínimo de operações de
       inserção, remoção e substituição necessárias que transformam uma
       seqüência em outra.}
@@ -105,14 +103,14 @@
       \begin{figure}
         \centering
         \includegraphics[width=4.5cm]{fig/rev02.png}
-        \caption{Reversão onde a permutação é orientada}
+        \caption{Reversão em uma permutação orientada}
       \end{figure}
     \end{column}
     \begin{column}{5cm}
       \begin{figure}
         \centering
         \includegraphics[width=4.5cm]{fig/rev01.png}
-        \caption{Reversão onde a permutação não é orientada}
+        \caption{Reversão em uma permutação não orientada}
       \end{figure}
     \end{column}
   \end{columns}
@@ -137,14 +135,14 @@
 \frame{
   \frametitle{Ordenação por Reversões}
   \begin{itemize}
-  \item{Em um estudo inicial Bafna e Pevzner (1993) apresentaram um
+  \item{Em um estudo inicial, Bafna e Pevzner (1993) apresentaram um
       algoritmo de aproximação com razão de 1.5 quando a orientação
       dos genes é conhecida e 1.75 caso contrário.}
   \item{Conhecer a orientação dos genes em um genoma é importante no
       problema de reversão, pois existem algoritmos polinomiais caso a
       orientação seja conhecida.}
   \item{Se não se conhece a orientação dos genes este problema pertence
-      a classe de problemas NP-Difícil, demonstrado em Caprara, Lancia
+      a classe dos problemas NP-Difíceis, demonstrado por Caprara, Lancia
       e Ng (1997).}
   \end{itemize}
 }
@@ -162,14 +160,14 @@
   \item{Existe um algoritmo com complexidade sub-quadrática
       apresentado por Tannier e Sagot (2004).}
   \item{Bader Moret e Yan (2001) apresentaram um algoritmo linear
-      quando apenas a distância é necessária.}
+      para calcular o valor da distância de reversão.}
   \end{itemize}
 }
 
 \frame{
   \frametitle{Ordenação por Reversões}
   \begin{itemize}
-  \item{Meidanis, Walter e Dias (2000), mostrou que toda teoria sobre
+  \item{Meidanis, Walter e Dias (2000) mostraram que toda teoria sobre
       reversões desenvolvida para genomas lineares pode ser adaptada
       facilmente para genomas circulares.}
   \item{Quando a orientação dos genes não é conhecida existem
@@ -214,9 +212,9 @@
   \item{O problema de encontrar a distância de transposição, que
       envolve encontrar o menor número de transposições necessárias
       para transformar um genoma em outro.}
-  \item{Bafna e Pevzner (1995) apresentaram um algoritmo capaz de
-      fornecer uma resposta aproximada na razão de 1.5, além de
-      derivar um importante limitante inferior para o problema.}
+  \item{Bafna e Pevzner (1995) apresentaram um algoritmo de
+      aproximação com razão 1.5, além de derivar um importante
+      limitante inferior para o problema.}
   \item{As heurísticas implementadas por Bafna e Pevzner utilizaram os
       conceitos de \textit{breakpoints} e de grafo de cíclos
       orientados com arestas de cores alternadas.}
@@ -227,10 +225,10 @@
   \frametitle{Ordenação por Transposições}
   \begin{itemize}
   \item{Não se conhece provas que este problema pertence a classe dos
-      problemas NP-Difícil e não se conhece algoritmos polinomiais, o
+      problemas NP-Difíceis e não se conhece algoritmos polinomiais, o
       que torna o estudo do problema interessante.}
   \item{Recentemente, Elias e Hartman (2006) propuseram um novo
-      algoritmo de aproximação na razão de 1.375.}
+      algoritmo de aproximação com razão 1.375.}
   \item{Labarre (2006) apresentou novos limitantes, além de definir
       classes de permutações em que a distância de transposição pode
       ser calculada em tempo e espaço lineares.}
@@ -243,8 +241,6 @@
   \item{Uma generalização do problema de transposição é a operação de
       troca de blocos, cuja solução pode auxiliar na resolução do
       problema da distância de transposição.}
-  \item{A distância de troca de blocos entre dois genomas é um
-      problema com solução polinomial para qualquer permutação.}
   \item{Christie (1996) apresentou um algoritmo polinomial para o
       problema de troca de blocos e utilizou conceitos já conhecidos
       na literatura sobre transposição.}
@@ -260,10 +256,10 @@
       genomas por diferentes eventos, em especial reversões e
       transposições.}
   \item{Gu, Peng e Sudborough (1996) criaram um algoritmo de
-      aproximação para computar a distância entre dois genomas com a
-      orientação dos genes conhecida.}
+      aproximação com razão 2 para computar a distância entre dois
+      genomas com a orientação dos genes conhecida.}
   \item{O algoritmo permite operações de reversão, transposição e
-      reversão+transposição simultaneamente.}
+      reversão e transposição simultaneamente.}
   \end{itemize}
 }
 
@@ -286,8 +282,8 @@
 \frame{
   \frametitle{Programação Linear Inteira}
   \begin{itemize}
-  \item{Apresentado por Dias e de Souza (2007).}
-  \item{Modelo para o problema da distância com tamanho polinomial.}
+  \item{Modelo para o problema da distância com tamanho polinomial
+      apresentado por Dias e de Souza (2007).}
   \item{Modelo específico para os eventos de reversão, transposição ou
       reversão e transposição simultaneamente.}
   \item{Possui um tempo de execução muito grande. O programa retornava
@@ -446,7 +442,7 @@
   \frametitle{Modelo - Transposição - Restrições}
   \begin{beamerboxesrounded}[center,shadow=true]{}
     Usando o limitante superior e o inferior definido por Bafna e
-    Pevzner (1998), obtemos as seguintes restrições. \\
+    Pevzner (1998), podemos obter as seguintes restrições. \\
     \begin{align}
       t_{k} * n + k - 1 &\ge LB(\pi,\sigma), \text{para todo $1 \le k
         \le n$}. \label{eq:transp6} \\
@@ -569,9 +565,9 @@
   \frametitle{Modelo - Reversão e Transposição - Restrições}
   \begin{beamerboxesrounded}[center,shadow=true]{}
     Usaremos todas as restrições definidas anteriormente, com excessão
-    das restrições \ref{eq:transp1}, \ref{eq:rev1}, \ref{eq:transp6} e
-    \ref{eq:transp7} que serão substituidas pelas restrições
-    \ref{eq:rt1} e \ref{eq:rt2}.
+    das restrições \ref{eq:transp1}, \ref{eq:transp6},
+    \ref{eq:transp7} e \ref{eq:rev1} que serão substituidas pelas
+    restrições \ref{eq:rt1} e \ref{eq:rt2}.
   \end{beamerboxesrounded}
   \vspace{1cm}
   \begin{beamerboxesrounded}[center,shadow=true]{Restrições}
@@ -593,12 +589,12 @@
   \frametitle{Modelo - Função Objetivo}
   \begin{beamerboxesrounded}[center,shadow=true]{Funções Objetivos}
     \begin{align}
-      \omega_{t} &= \min \sum_{k=1}^{n-1} t_{k}, \text{Transposição}. 
-      \label{eq:fotra} \\
-      \omega_{r} &= \min \sum_{k=1}^{n-1} r_{k}, \text{Reversão}.
-      \label{eq:forev} \\
-      \omega_{rt} &= \min \sum_{k=1}^{n-1} z_{k}, \text{Reversão e
-        Transposição}.
+      &\text{Transposição :} &\omega_{t} = \min \sum_{k=1}^{n-1} t_{k}
+      \label{eq:fotra} & ~~~ \\
+      &\text{Reversão :} &\omega_{r} = \min \sum_{k=1}^{n-1} r_{k}
+      \label{eq:forev} & ~~~ \\
+      &\text{Reversão e Transposição :} &\omega_{rt} = \min
+      \sum_{k=1}^{n-1} z_{k} & ~~~
       \label{eq:fort}
     \end{align}
   \end{beamerboxesrounded}
@@ -614,8 +610,8 @@
   \item{Aprimorar o modelo já existente usando técnicas de Relaxação
       Lagrangeana. Restrições complicadoras servirão como penalização
       na função objetivo do problema.}
-  \item{Criação de um novo modelo, ``não se importando'' com o tamanho
-      do modelo, com o objetivo de aplicar técnicas como:
+  \item{Criação de um novo modelo, não necessariamente polinomial, com
+      o objetivo de aplicar técnicas como:
     \begin{itemize}
     \item{Geração de Colunas: se o problema possuir um número
         não-polinomial de variáveis.}
@@ -630,13 +626,13 @@
 \frame{
   \frametitle{Programação Lógica por Restrições}
   \begin{itemize}
-  \item{Apresentado por Dias e Dias (2009).}
-  \item{Modelo específico para o eventos de transposição.}
-  \item{Duas formulações. Uma baseada na teoria do Problema de
+  \item{Modelo específico para o eventos de transposição apresentado
+      por Dias e Dias (2009).}
+  \item{Duas formulações: uma baseada na teoria do Problema de
       Satisfação de Restrições (CSP) e a outra baseada na teoria do
       Problema de Otimização com Restrições (COP).}
-  \item{Modelo simples. Não está utilizando algumas propriedades do
-      problema que podem melhorar a formulação.}
+  \item{Não utiliza algumas propriedades do problema que podem
+      melhorar a formulação.}
   \end{itemize}
 }
 
@@ -655,16 +651,16 @@
     transposição $\rho(i,j,k)$, $0 < i < j < k \le n$, tem o efeito de
     separar a lista em quatro sub-listas $C_{1}C_{2}C_{3}C_{4}$ onde
     $C_{1} = (\pi_{1},\ldots,\pi_{i-1}), C_{2} =
-    (\pi_{i},\ldots,\pi_{j-1}), C_{3} = (\pi_{j},\ldots,\pi_{k-1}) e
-    C_{4} = (\pi_{k},\ldots,\pi_{n})$, e juntando elas da forma
-    $\pi\rho = C_{1}C_{3}C_{2}C_{4}$.
+    (\pi_{i},\ldots,\pi_{j-1}), C_{3} = (\pi_{j},\ldots,\pi_{k-1})$ e
+    $C_{4} = (\pi_{k},\ldots,\pi_{n})$, e juntando elas da forma
+    $\rho\pi = C_{1}C_{3}C_{2}C_{4}$.
   \end{beamerboxesrounded}
   \begin{columns}[c]
     \begin{column}{5cm}
       \begin{beamerboxesrounded}[center,shadow=true]{permutation/2}
         %% \begin{algorithm}[H]
         \begin{align}
-          per&mutation(\pi, N) :- \nonumber\\
+          per&mutation(\pi, N) \text{:-} \nonumber\\
           &length(\pi, N), \nonumber\\
           &\pi :: [1 .. N], \nonumber\\
           &all\_different(\pi). \nonumber
@@ -676,7 +672,7 @@
       \begin{beamerboxesrounded}[center,shadow=true]{transposition/5}
         %% \begin{algorithm}[H]
         \begin{align}
-          tra&nsposition(\pi, \sigma, I, J, K) :- \nonumber\\
+          tra&nsposition(\pi, \sigma, I, J, K) \text{:-} \nonumber\\
           &permutation(\pi, N), \nonumber\\
           &permutation(\sigma, N), \nonumber\\
           &1 \le I < J < K \le N, \nonumber\\
@@ -704,7 +700,7 @@
     %% \begin{algorithm}[H]
     \begin{align}
       dis&tance(\iota, 0, \_Model). \nonumber\\
-      dis&tance(\pi, T, Model) :- \nonumber\\
+      dis&tance(\pi, T, Model) \text{:-} \nonumber\\
       &bound(\pi, Model, LowerBound, UpperBound), \nonumber\\
       &T :: [LowerBound .. UpperBound], \nonumber\\
       &indomain(T), \nonumber \\
@@ -725,7 +721,7 @@
     quando uma transposição modificou a permutação.\\
     O predicado $transposition\_cop/6$ é criado para suprir a
     necessidade de indicar quando a transposição modificou ou não a
-    permutação. Se $(i,j,k) = (0,0,0)$ então $\pi\rho = \pi$. Caso
+    permutação. Se $(i,j,k) = (0,0,0)$, então $\rho\pi = \pi$. Caso
     contrário, a permutação foi modificada e então o valor da variável
     $B$ para este caso é $1$.
   \end{beamerboxesrounded}
@@ -733,7 +729,7 @@
     %% \begin{algorithm}[H]
     \begin{align}
       tra&nsposition\_cop(\iota, \iota, 0, 0, 0, 0). \nonumber\\
-      tra&nsposition\_cop(\pi, \sigma, I, J, K, 1) :- 
+      tra&nsposition\_cop(\pi, \sigma, I, J, K, 1) \text{:-} 
       transposition(\pi, \sigma, I, J, K).\nonumber
     \end{align}
     %% \end{algorithm}
@@ -745,12 +741,12 @@
   \begin{beamerboxesrounded}[center,shadow=true]{}
     O predicado $distance\_cop/3$ atribui valores as variáveis
     binárias $B$ utilizando o limitante superior e as restrições
-    fazendo a permutação $\pi_{k} = \pi_{k-1}\rho_{k}$.
+    fazendo a permutação $\pi_{k} = \rho_{k}\pi_{k-1}$.
   \end{beamerboxesrounded}
   \begin{beamerboxesrounded}[center,shadow=true]{distance\_cop/3}
     %% \begin{algorithm}[H]
     \begin{align}
-      dis&tance\_cop(\pi, N, Model) :- \nonumber\\
+      dis&tance\_cop(\pi, N, Model) \text{:-} \nonumber\\
       &bound(\pi, Model, LowerBound, UpperBound), \nonumber\\
       &length(B, UpperBound), \nonumber\\
       &upperbound\_constraint(\pi, B, UpperBound), \nonumber \\
@@ -773,7 +769,7 @@
     %% \begin{algorithm}[H]
     \begin{align}
       upp&erbound\_constraint(\iota, [~], \_UpperBound). \nonumber\\
-      upp&erbound\_constraint(\pi, [B|Bs], UpperBound) :- \nonumber\\
+      upp&erbound\_constraint(\pi, [B|Bs], UpperBound) \text{:-} \nonumber\\
       &transposition\_cop(\pi, \sigma, \_I, \_J, \_K, B), \nonumber\\
       &bound(\pi, Model, LowerBound, \_UpperBound), \nonumber\\
       &UpperBound \ge LowerBound, \nonumber\\
@@ -808,6 +804,8 @@
       (2007).}
   \item{Aprimorar o modelo de programação por restrições apresentado
       por Dias e Dias (2009).}
+  \item{Criar modelos de programação por restrições para o evento de
+      reversão.}
   \end{itemize}
 }
 
@@ -815,27 +813,28 @@
 
 \frame{
   \frametitle{Cronograma}
-  \begin{itemize}
-  \item{1. Cumprimento das disciplinas obrigatórias do programa de mestrado.}
-  \item{2. Revisão Bibliográfica dos artigos clássicos sobre rearranjo
+  \begin{enumerate}
+  \item{Cumprimento das disciplinas obrigatórias do programa de mestrado.}
+  \item{Revisão Bibliográfica dos artigos clássicos sobre rearranjo
       de genomas.}
-  \item{3. Escrita do projeto de mestrado e exame de qualificação.}
-  \item{4. Estudo e desenvolvimento sobre o modelo de programação
+  \item{Escrita do projeto de mestrado e exame de qualificação.}
+  \item{Estudo e desenvolvimento sobre o modelo de programação
       linear inteira para o problema de rearranjo de genomas.}
-  \item{5. Estudo e desenvolvimento sobre o modelo de programação
+  \item{Estudo e desenvolvimento sobre o modelo de programação
       por restrições para o problema de rearranjo de genomas.}
-  \end{itemize}
+  \end{enumerate}
 }
 
 \frame{
   \frametitle{Cronograma}
-  \begin{itemize}
-  \item{6. Testes dos modelos desenvolvidos.}
-  \item{7. Escrita da dissertação. A escrita começará a ser feita a
-      partir dos primeiros resultados.}
-  \item{8. Revisão final do texto da dissertação.}
-  \item{9. Defesa da dissertação.}
-  \end{itemize}
+  \begin{enumerate}
+    \setcounter{enumi}{5}
+  \item{Testes dos modelos desenvolvidos.}
+  \item{Escrita da dissertação (a escrita começará a ser feita a
+      partir dos primeiros resultados).}
+  \item{Revisão final do texto da dissertação.}
+  \item{Defesa da dissertação.}
+  \end{enumerate}
 }
 
 \frame{
