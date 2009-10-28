@@ -53,7 +53,7 @@
       pontuais.}
   \item{No modelo de rearranjo de genomas, um genoma é representado
       por uma seqüência de números inteiros, onde cada inteiro
-      representa um gene ou um grupo de genes.}
+      representa um gene ou um bloco de genes.}
   \end{itemize}
 }
 
@@ -84,7 +84,7 @@
     $n$-tupla de genes, quando não há genes repetidos essa $n$-tupla é
     chamanda de permutação. Uma permutação é representada como $\pi =
     (\pi_{1}~\pi_{2}~ \ldots~\pi_{n})$, onde $\pi_{i}$, para todo $ 1
-    \le i \le n$, representa um gene (ou um grupo de genes) e os
+    \le i \le n$, representa um gene (ou um bloco de genes) e os
     vários eventos de rearranjo $\rho$ são aplicados a $\pi$ de uma
     maneira específica.
   \end{beamerboxesrounded}  
@@ -238,9 +238,9 @@
 \frame{
   \frametitle{Ordenação por Transposições}
   \begin{itemize}
-  \item{Uma generalização do problema de transposição é a operação de
-      troca de blocos, cuja solução pode auxiliar na resolução do
-      problema da distância de transposição.}
+  \item{Uma generalização deste problema é a operação de troca de
+      blocos não necessariamente adjacentes, cuja solução pode
+      auxiliar na resolução do problema da distância de transposição.}
   \item{Christie (1996) apresentou um algoritmo polinomial para o
       problema de troca de blocos e utilizou conceitos já conhecidos
       na literatura sobre transposição.}
@@ -267,7 +267,8 @@
   \frametitle{Ordenação por Reversões e Transposições}
   \begin{itemize}
   \item{Walter, Dias e Meidanis (1998) apresentaram um algoritmo de
-      aproximação para a distância de reversão e transposição.}
+      aproximação com razão 2 para a distância de reversão e
+      transposição.}
   \item{Também forneceram limitantes para o diâmetro de reversão e
       transposição em permutações orientadas que foram melhorados em
       Meidanis, Walter e Dias (2002).}
@@ -602,10 +603,10 @@
 
 \normalsize
 
-\subsection{Metodologias}
+\subsection{Objetivos e Metodologias}
 
 \frame{
-  \frametitle{Metodologias}
+  \frametitle{Objetivos e Metodologias}
   \begin{itemize}
   \item{Aprimorar o modelo já existente usando técnicas de Relaxação
       Lagrangeana. Restrições complicadoras servirão como penalização
@@ -631,8 +632,8 @@
   \item{Duas formulações: uma baseada na teoria do Problema de
       Satisfação de Restrições (CSP) e a outra baseada na teoria do
       Problema de Otimização com Restrições (COP).}
-  \item{Não utiliza algumas propriedades do problema que podem
-      melhorar a formulação.}
+  \item{Modelo simples que não utiliza algumas propriedades do
+      problema que podem melhorar a formulação.}
   \end{itemize}
 }
 
@@ -781,10 +782,10 @@
 
 \normalsize
 
-\subsection{Metodologias}
+\subsection{Objetivos e Metodologias}
 
 \frame{
-  \frametitle{Metodologias}
+  \frametitle{Objetivos e Metodologias}
   \begin{itemize}
   \item{Adicionar predicados com informações não utilizadas pelas
       formulações citadas anteriormente.}
@@ -799,9 +800,8 @@
 \frame{
   \frametitle{Objetivos}
   \begin{itemize}
-  \item{Procurar um método para melhorar o tempo de execução do modelo
-      de programação linear inteira apresentado por Dias e de Souza
-      (2007).}
+  \item{Melhorar o tempo de execução do modelo de programação linear
+      inteira apresentado por Dias e de Souza (2007).}
   \item{Aprimorar o modelo de programação por restrições apresentado
       por Dias e Dias (2009).}
   \item{Criar modelos de programação por restrições para o evento de
@@ -856,7 +856,7 @@
         % 3   4   5   6   7   8   9   0   1   2   1   2
         1                        & x & x & x & x & x & x & x & x & x & x &   &   \\ \hline
         2                        & x & x & x & x & x & x & x & x & x & x &   &   \\ \hline
-        3                        &   &   &   &   & x & x & x &   &   &   &   &   \\ \hline
+        3                        &   &   &   &   & x & x & x & x &   &   &   &   \\ \hline
         4                        &   &   &   &   &   &   &   &   &   &   & x & x \\ \hline
         \hline
       \end{tabular}
